@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Offensive Language Detector</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; }
+        .container { max-width: 600px; margin: auto; }
+        input[type="text"], textarea, select { width: 100%; padding: 0.5em; margin: 0.5em 0; }
+        input[type="submit"] { padding: 0.5em 1em; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Offensive Language Detector</h1>
+        <form action="/predict" method="post">
+            <label for="tweet">Enter a Tweet:</label>
+            <textarea name="tweet" id="tweet" rows="4" placeholder="Type your tweet here..." required></textarea>
+            
+            <label for="model_choice">Choose Model:</label>
+            <select name="model_choice" id="model_choice">
+                <option value="cnn">CNN</option>
+                <option value="naive_bayes">Naive Bayes</option>
+            </select>
+            
+            <input type="submit" value="Predict">
+        </form>
+
+        {% if tweet %}
+            <h3>Tweet:</h3>
+            <p>{{ tweet }}</p>
+            <h3>Model Used:</h3>
+            <p>{{ model_choice|capitalize }}</p>
+            <h3>Prediction:</h3>
+            <p><strong>{{ prediction }}</strong></p>
+        {% endif %}
+    </div>
+</body>
+</html>
